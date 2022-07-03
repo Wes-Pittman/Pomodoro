@@ -1,14 +1,28 @@
-# Python program to illustrate a Pomodoro Timer with built-in intervals and sounds
-import tkinter as tk
+# Python program to illustrate a Pomodoro Timer with built-in intervals 25/10 then after 4 sets a 30min break and sounds chimes or dings
+# Imports
+import time
 
-# Workspace / Main Window
-ws = tk.Tk()
-ws.title("Pomodoro Timer")
-label = tk.Label(ws, text="Select Intervals")
-label.pack()
 
-# Dimensions
-ws.minsize(width=300, height=120)
+def time_convert(sec):
+    mins = sec // 60
+    sec = sec % 60
+    hours = mins // 60
+    mins = mins % 60
+    print("Time lapsed = {0}:{1}".format(int(mins), sec))
 
-# Running
-ws.mainloop()
+
+input("Press Enter to start the Pomodoro cycle")
+start_time = time.time()
+try:
+    hours = 0
+
+    while True:
+        for minutes in range(0, 60):
+            for seconds in range(0, 60):
+                time.sleep(1)
+                print(minutes, ":", seconds+1)
+
+except KeyboardInterrupt:
+    end_time = time.time()
+    time_lapsed = end_time - start_time
+    time_convert(time_lapsed)
